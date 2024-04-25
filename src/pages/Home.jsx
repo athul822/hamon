@@ -3,9 +3,10 @@ import styled from "styled-components";
 import HeaderBar from '../components/header/HeaderBar';
 import { getApiData } from '../services/api';
 import TabBar from '../components/tabview/TabBar';
+import DishCard from '../components/dish/DishCard';
 
 const Home = () => {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(1);
   const [data, setData] = useState(null); // data is initially null
   const [isLoading, setIsLoading] = useState(true); // track loading state
   const [error, setError] = useState(null); // track error state
@@ -13,6 +14,7 @@ const Home = () => {
   useEffect(() => {
     getApiData('db0018c8-5982-4d89-a54f-f51fe14d3c89')
       .then(response => {
+        console.log(response.data[0]);
         setData(response.data[0]);
         setIsLoading(false);
       })
@@ -45,6 +47,11 @@ const Home = () => {
           setActiveTab={setActiveTab}
         />
         <TabViewContainer>
+          {
+            data.table_menu_list && data.table_menu_list[activeTab].category_dishes.map((item, index) => (
+              <DishCard dish={item} />
+            ))
+          }
         </TabViewContainer>
       </div>
     </MainContainer>
@@ -62,6 +69,8 @@ const MainContainer = styled.div`
 
 const TabViewContainer = styled.div`
   flex-grow: 1;
-  background-color: red;
   overflow: scroll;
+  display: flex;
+  gap: .5px;
+  flex-direction: column;
 `
