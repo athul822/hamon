@@ -4,9 +4,11 @@ import HeaderBar from '../components/header/HeaderBar';
 import { getApiData } from '../services/api';
 import TabBar from '../components/tabview/TabBar';
 import DishCard from '../components/dish/DishCard';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
-  const [activeTab, setActiveTab] = useState(1);
+  // const [activeTab, setActiveTab] = useState(1);
+  const activeTab = useSelector((state) => state.tab.value);
   const [data, setData] = useState(null); // data is initially null
   const [isLoading, setIsLoading] = useState(true); // track loading state
   const [error, setError] = useState(null); // track error state
@@ -44,7 +46,7 @@ const Home = () => {
         <TabBar
           menu={data.table_menu_list}
           activeTab={activeTab}
-          setActiveTab={setActiveTab}
+          // setActiveTab={setActiveTab}
         />
         <TabViewContainer>
           {
