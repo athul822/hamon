@@ -1,18 +1,31 @@
 import React from 'react'
-import styled from 'styled-components'
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, decrementQuantity } from '../../store/features/cart/cartSlice';
+import { selectCartItems } from '../../store/features/cart/cartSelectors';
 
-const AddBotton = () => {
+const AddBotton = ({id}) => {
+    const totalQuantity = useSelector(selectCartItems);
+    const dispatch = useDispatch();
+    const handleIncrementCart = () => {
+        dispatch(addToCart({
+            productId: id,
+            quantity: 1
+          }))
+    }
+    const handleDecrementCart = () => {
+        dispatch(decrementQuantity({ productId: id }))
+    }
     return (
         <div className="inline-flex gap-3 items-center bg-green-400 rounded-2xl">
             <button
-                //   onClick={handleIncrement}
+                  onClick={handleDecrementCart}
                 className="text-grey-500 rounded px-5 py-1"
             >
                 -
             </button>
-            <p className="">{0}</p>
+            <p className="">{totalQuantity[id]? totalQuantity[id].quantity : 0}</p>
             <button
-                //   onClick={handleDecrement}
+                  onClick={handleIncrementCart}
                 className=" text-white rounded px-5 py-1"
             >
                 +
@@ -22,12 +35,4 @@ const AddBotton = () => {
 }
 
 export default AddBotton
-
-const MainButtonContainer = styled.div`'
-    border-radius: 1em;
-`;
-const AddBottonContainer = styled.button`
-    border-bottom-left-radius: 1em;
-    border-top-left-radius: 1em;
-`;
 

@@ -28,7 +28,7 @@ const DishCard = ({ dish }) => {
         </div>
         <p className="text-sm sm:text-lg text-gray-500">{dish.dish_description}</p>
         <div>
-          <AddBotton />
+          <AddBotton id={dish.dish_id}/>
         </div>
         {
           dish.addonCat && dish.addonCat.length > 0
