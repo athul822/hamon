@@ -27,16 +27,24 @@ const Home = () => {
       });
   }, []);
 
+  const LodingScreen = ({text}) => {
+    return (
+      <div className="flex justify-center items-center h-screen bg-black text-white">
+       <p>{text}</p>
+      </div>
+    )
+  }
+
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <LodingScreen text="Loading..." />
   }
 
   if (error) {
-    return <p>{error}</p>;
+    return <LodingScreen text={error} />;
   }
 
   if (!data) {
-    return <p>No data available</p>;
+    return <LodingScreen text="No data available" />;
   }
 
   return (
