@@ -12,8 +12,8 @@ const TabTitleItem = ({title,id}) => {
     const activeTab = useSelector((state) => state.tab.value);
     console.log("activeTabinside", activeTab,id);
     return (
-        <TabItem selected={activeTab == id} onClick={handleTabClick}>
-            <TabTitle selected={activeTab == id} className='font-semibold whitespace-nowrap'>{title}</TabTitle>
+        <TabItem selected={activeTab === id} onClick={handleTabClick}>
+            <TabTitle selected={activeTab === id} className='font-semibold whitespace-nowrap'>{title}</TabTitle>
         </TabItem>
     )
 }

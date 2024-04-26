@@ -10,7 +10,7 @@ const DishCard = ({ dish }) => {
       <div className="flex-1 flex flex-col gap-3 text-white">
         <div className="flex justify-start items-center gap-3">
           <img
-            src={dish.dish_Typ == 1 ? veg_icon : non_veg_icon}
+            src={dish.dish_Typ === 1 ? veg_icon : non_veg_icon}
             alt={dish.dish_name}
             className="w-4 h-4 sm:w-5 sm:h-5 object-cover rounded"
           />
