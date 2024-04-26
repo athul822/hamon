@@ -4,28 +4,33 @@ import HeaderBar from '../components/header/HeaderBar';
 import { getApiData } from '../services/api';
 import TabBar from '../components/tabview/TabBar';
 import DishCard from '../components/dish/DishCard';
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import TabView from '../components/tabview/TabView';
+import SwipeableViews from 'react-swipeable-views';
+import { setIndex } from '../store/features/tab/tabSlice';
 const Home = () => {
   // const [activeTab, setActiveTab] = useState(1);
   const activeTab = useSelector((state) => state.tab.value);
   const [data, setData] = useState(null); // data is initially null
   const [isLoading, setIsLoading] = useState(true); // track loading state
   const [error, setError] = useState(null); // track error state
-
+  const dispatch = useDispatch();
   useEffect(() => {
-    getApiData('db0018c8-5982-4d89-a54f-f51fe14d3c89')
-      .then(response => {
-        // console.log(response.data[0]);
+    const fetchData = async () => {
+      try {
+        const response = await getApiData('db0018c8-5982-4d89-a54f-f51fe14d3c89');
         setData(response.data[0]);
         setIsLoading(false);
-      })
-      .catch(err => {
+      } catch (err) {
         console.error(err);
         setError("An error occurred while fetching data.");
         setIsLoading(false);
-      });
+      }
+    };
+  
+    fetchData();
   }, []);
+  
 
   const LodingScreen = ({text}) => {
     return (
@@ -57,11 +62,25 @@ const Home = () => {
           // setActiveTab={setActiveTab}
         />
         <TabViewContainer>
+          <SwipeableViews 
+            index={activeTab}
+            onChangeIndex={(index) => dispatch(setIndex(index))}
+          >
           {
+            data.table_menu_list.map((item, index) => (
+              <TabView data={item} />
+            ))
+       
+          }
+          {/* <TabView data={data.table_menu_list} /> */}
+
+          </SwipeableViews>
+          
+          {/* {
             data.table_menu_list && data.table_menu_list[activeTab].category_dishes.map((item, index) => (
               <DishCard dish={item} />
             ))
-          }
+          } */}
         </TabViewContainer>
       </div>
     </MainContainer>
@@ -78,7 +97,7 @@ const MainContainer = styled.div`
 `
 
 const TabViewContainer = styled.div`
-  flex-grow: 1;
+  // flex-grow: 1;
   overflow: scroll;
   display: flex;
   gap: .5px;
