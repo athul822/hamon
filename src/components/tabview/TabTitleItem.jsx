@@ -27,8 +27,9 @@ const TabItem = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-bottom: 3px solid ${(props) => (props.selected ? "red" : "transparent")};   
+    padding: 1em;
+    border-bottom: 3px solid ${(props) => (props.selected ? "red" : "transparent")};
 `
-const TabTitle = styled.h6`
+const TabTitle = styled.p`
     color: ${(props) => (props.selected ? "red" : "white")};
 `

@@ -16,7 +16,7 @@ const AddBotton = ({id}) => {
         dispatch(decrementQuantity({ productId: id }))
     }
     return (
-        <div className="inline-flex gap-3 items-center bg-green-400 rounded-2xl">
+        <div className="inline-flex gap-3 items-center bg-green-500 rounded-2xl">
             <button
                   onClick={handleDecrementCart}
                 className="text-grey-500 rounded px-5 py-1"

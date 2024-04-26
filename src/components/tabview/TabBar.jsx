@@ -20,5 +20,9 @@ const TabBarConainer =styled.div`
     display: flex;
     gap: 3em;
     overflow-x: scroll;
+    overflow-y: hidden;
     padding: 1em;
+    flex-grow: 1;
+    max-height: 60px;   
+
 `

@@ -12,18 +12,18 @@ const DishCard = ({ dish }) => {
           <img
             src={dish.dish_Typ == 1 ? veg_icon : non_veg_icon}
             alt={dish.dish_name}
-            className="w-5 h-5 object-cover rounded"
+            className="w-4 h-4 sm:w-5 sm:h-5 object-cover rounded"
           />
-          <h3 className="text-lg sm:text-xl font-bold">{dish.dish_name}</h3>
+          <h3 className=" text-base sm:text-xl font-bold">{dish.dish_name}</h3>
         </div>
         <div className='flex justify-between items-center gap-3'>
           <div className='flex gap-3'>
-            <p>{dish.dish_currency}</p>
-            <p>{dish.dish_price}</p>
+            <p className="text-sm sm:text-base">{dish.dish_currency}</p>
+            <p className="text-sm sm:text-base">{dish.dish_price}</p>
           </div>
-          <div className='flex gap-3'>
-            <p>{dish.dish_calories}</p>
-            <p>{"Calories"}</p>
+          <div className='flex gap-2'>
+            <p className="text-sm sm:text-base">{dish.dish_calories}</p>
+            <p className="text-sm sm:text-base">{"Calories"}</p>
           </div>
         </div>
         <p className="text-sm sm:text-lg text-gray-500">{dish.dish_description}</p>

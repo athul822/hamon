@@ -16,7 +16,7 @@ const Home = () => {
   useEffect(() => {
     getApiData('db0018c8-5982-4d89-a54f-f51fe14d3c89')
       .then(response => {
-        console.log(response.data[0]);
+        // console.log(response.data[0]);
         setData(response.data[0]);
         setIsLoading(false);
       })
